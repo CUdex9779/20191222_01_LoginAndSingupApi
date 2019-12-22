@@ -35,10 +35,13 @@ class BlackListAdapter(context: Context,resId:Int,list:ArrayList<BlackListData>)
         val titleTxt = row.findViewById<TextView>(R.id.titleTxt)
         val phoneNumTxt = row.findViewById<TextView>(R.id.phoneNumTxt)
         val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+        val writerNameTxt = row.findViewById<TextView>(R.id.writerTxt)
 
         titleTxt.text = data.title
         phoneNumTxt.text = "(${data.phoneNum})"
         contentTxt.text = data.content
+
+        writerNameTxt.text = "-by : ${data.writer.name}"
 
         return row
 
