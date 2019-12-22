@@ -21,7 +21,7 @@ class ConnectServer {
             inputId: String,
             inputPw: String,
             inputName: String,
-            inputphone: String,
+            inputPhone: String,
             handler: JsonResponseHandler?
         ) {
 
@@ -38,7 +38,7 @@ class ConnectServer {
                 .add("login_id", inputId)
                 .add("password", inputPw)
                 .add("name",inputName)
-                .add("phone",inputphone)
+                .add("phone",inputPhone)
                 .build()//모두 추가했으면 폼바디를 완성 .build()
 //            실제로 날아갈 요청을 작성.=>화면을 넘어갈 때 Intent를 만드는 것과 비슷한 개념
 
