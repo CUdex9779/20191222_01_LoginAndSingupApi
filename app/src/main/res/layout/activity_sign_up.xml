@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".SignUpActivity">
 
     <TextView
@@ -35,7 +36,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:layout_marginTop="5dp"
         android:hint="이름을 입력하세요"/>
     <TextView
@@ -45,7 +46,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="number"
         android:layout_marginTop="5dp"
         android:hint="연락처를 입력하세요"/>
     <Button

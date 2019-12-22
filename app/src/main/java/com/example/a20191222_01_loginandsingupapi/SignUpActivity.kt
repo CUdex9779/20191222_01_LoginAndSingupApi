@@ -5,8 +5,20 @@ import android.os.Bundle
 
 class SignUpActivity : BaseActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        setUpEvents()
+        setValues()
+    }
+
+    override fun setUpEvents() {
+
+    }
+
+    override fun setValues() {
+
     }
 }
