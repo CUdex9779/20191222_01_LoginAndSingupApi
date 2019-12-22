@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.a20191222_01_loginandsingupapi.Utils.ConnectServer
+import com.example.a20191222_01_loginandsingupapi.Utils.ContextUtil
 import com.example.a20191222_01_loginandsingupapi.datas.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -40,6 +41,13 @@ class LoginActivity : BaseActivity() {
 
 
                         val userData = User.getUserDataFromJson(user)
+
+//                        서버에서 내려준 토큰 값 파싱
+                        val token = data.getString("token")
+
+//                        sharedPreference로 반영구적으로 저장
+
+                        ContextUtil.setUserToken(mContext,token)
 
                         val intent = Intent(mContext,MainActivity::class.java)
                         intent.putExtra("user",userData)
