@@ -96,6 +96,43 @@ class ConnectServer {
             })
 
         }
+
+        fun getRequestBlackList(context: Context,handler: JsonResponseHandler?){
+
+            val client = OkHttpClient()
+
+//            Get 방식 호출 파라미터를 query에 담는다 => 주소창에 같이 적어주는 방식
+//            url을 만들 때 애초에 파라미터도 같이 첨부해야함.
+
+            val urlBuilder = HttpUrl.parse("${BASE_URL}/black_list")!!.newBuilder()
+//            URL빌더를 통해 가공된 URL을 실제 String타입의 url로 변경.
+            val url = urlBuilder.build().toString()
+
+            val request = Request.Builder()
+                .url(url)
+                .header("X-Http-Token",ContextUtil.getUserToken(context))//API가 Header를 요구한다면 리퀘스트 생성시 첨부.
+                .build()
+
+//            서버에 클라이언트를 통해 서버에 요청
+
+            client.newCall(request).enqueue(object : Callback{
+                override fun onFailure(call: Call, e: IOException) {
+//                    서버요청 실패시 왜 실패했는지 LogCat으로 알림
+                    e.printStackTrace()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+//                    서버 요청에 성공하면 응답 내용 String으로 받아서 JSON으로 가공
+                    val body = response.body()!!.string()
+                    val json = JSONObject(body)
+                    handler?.onResponse(json)
+                }
+
+        })
     }
 
+
+
+}
 }
