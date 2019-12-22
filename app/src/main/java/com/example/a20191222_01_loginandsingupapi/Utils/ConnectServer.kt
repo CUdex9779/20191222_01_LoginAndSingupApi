@@ -131,8 +131,39 @@ class ConnectServer {
 
         })
     }
+        fun postRequestBlackList(context: Context,title:String,phoneNum:String,content:String,handler: JsonResponseHandler?){
+
+            val client = OkHttpClient()
+            val url = "${BASE_URL}/black_list"
+
+            val formData = FormBody.Builder()
+                .add("title",title)
+                .add("phone_num",phoneNum)
+                .add("content",content)
+                .build()
+
+            val request = Request.Builder()
+                .url(url)
+                .header("X-Http-Token",ContextUtil.getUserToken(context))
+                .post(formData)
+                .build()
+
+            client.newCall(request).enqueue(object :Callback{
+                override fun onFailure(call: Call, e: IOException) {
+                    e.printStackTrace()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body()!!.string()
+                    val json = JSONObject(body)
+                    handler?.onResponse(json)
+                }
+
+            })
+
+        }
 
 
 
-}
+    }
 }
