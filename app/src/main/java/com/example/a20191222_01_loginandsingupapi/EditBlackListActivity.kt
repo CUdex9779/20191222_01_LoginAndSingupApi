@@ -3,6 +3,7 @@ package com.example.a20191222_01_loginandsingupapi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.a20191222_01_loginandsingupapi.Utils.ConnectServer
 import kotlinx.android.synthetic.main.activity_edit_black_list.*
 import org.json.JSONObject
@@ -33,6 +34,20 @@ class EditBlackListActivity : BaseActivity() {
                 override fun onResponse(json: JSONObject) {
 
                     Log.d("게시글등록응답",json.toString())
+                    
+                    val code = json.getInt("code")
+
+                    if (code == 200){
+
+                        Toast.makeText(mContext,"게시글이 등록되었습니다.",Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        val message = json.getString("message")
+
+                        runOnUiThread{
+                            Toast.makeText(mContext,message,Toast.LENGTH_SHORT).show()
+                        }
+                    }
 
                 }
 
