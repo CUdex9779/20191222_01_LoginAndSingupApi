@@ -39,6 +39,8 @@ class SignUpActivity : BaseActivity() {
 
 
 
+
+
                     runOnUiThread {
 
                         Toast.makeText(mContext, message , Toast.LENGTH_SHORT).show()
